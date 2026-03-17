@@ -16,8 +16,10 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())               // CSRF 비활성화 (JWT 사용할 거라서)
                 .formLogin(form -> form.disable())      // 기본 로그인 페이지 비활성화
                 .httpBasic(basic -> basic.disable())    // HTTP Basic 인증 비활성화
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))     // h2-console 프레임 깨지는 거 방지
                 .authorizeHttpRequests(auth -> auth       // URL별 접근 권한 설정
                         .requestMatchers("/login", "/signup").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .build();
