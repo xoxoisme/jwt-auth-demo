@@ -1,13 +1,15 @@
 package com.taehyun.entity;
 
-import com.taehyun.MemberType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member extends BaseEntity {
@@ -27,5 +29,6 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
+    @Default
     private MemberType type = MemberType.USER;
 }
